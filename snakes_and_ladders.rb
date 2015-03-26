@@ -34,11 +34,14 @@ class SnakesAndLadders
 
   def print_board
     @board.each do |array|
-       pp @joined_board = array.join("|")
+       pp array.join("|")
     end
   end
 
   def snake
+    start_column
+    start_row
+    snake_length
     @board[@start_row.to_i][@start_column.to_i] = 'S'
       @snake_length.times do
         if @start_row == 9 || @start_column == 9
@@ -49,10 +52,25 @@ class SnakesAndLadders
       end
   end
 
+  def ladder
+    start_column
+    start_row
+    snake_length
+    @board[@start_row.to_i][@start_column.to_i] = 'l'
+      @snake_length.times do
+        if @start_row == 9 || @start_column == 9
+          break
+        else
+        @board[@start_row+=1][@start_column+=1] = 'L'
+        end
+      end
+  end
+
 end
 
 new_board = SnakesAndLadders.new
 
 new_board.empty_board
 new_board.snake
+new_board.ladder
 new_board.print_board
