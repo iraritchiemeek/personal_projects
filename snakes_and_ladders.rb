@@ -34,8 +34,12 @@ class SnakesAndLadders
   def snake
     puts "Start row: #{@start_row}, Start column #{@start_column}, Snake Length #{@snake_length}"
     @board[@start_row.to_i][@start_column.to_i] = 'S'
-      @snake_length.to_i.times do
+      @snake_length.times do
+        if @start_row == 9 || @start_column == 9
+          break
+        else
         @board[@start_row+=1][@start_column+=1] = 's'
+        end
       end
     pp @board
   end
